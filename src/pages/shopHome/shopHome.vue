@@ -13,7 +13,7 @@
         </div>
         <div class="product-right" ref="productWrapper">
           <div class="product-content">
-          <div v-for="(item,index) in goods" :key="index" ref="productList" class="food-list food-list-hook">
+          <div v-for="(item,index) in goods" :key="index" ref="productList" class="menu-product-list product-list-hook">
             <div class="menu-title">{{item.name}}</div>
             <div class="menu-product">
               <div v-for="(productItem,productIndex) in item.foods" :key="productIndex" class="product-item product-item-hook">
@@ -176,61 +176,67 @@ export default {
       .product-right{
         flex: 1;
         background-color: #fff;
-        .menu-title{
-          color: #aaa;
-          font-size: 12px;
-          text-align: left;
-          line-height: 20px;
-        }
-        .product-item{
-          color: #555;
-          font-size: 10px;
-          height: 80px;
-          text-align: center;
-          line-height: 80px;
-          .product-box{
-            display: flex;
-            .product-img{
-              width: 100px;
-              height: 100%;
-              .img-detail{
-                width: 60px;
-                height: 60px;
+        .menu-product-list{
+          &:last-child{
+            margin-bottom: 500px;
+          }
+          .menu-title{
+            color: #aaa;
+            font-size: 12px;
+            text-align: left;
+            line-height: 20px;
+          }
+          .product-item{
+            color: #555;
+            font-size: 10px;
+            height: 100px;
+            text-align: center;
+            line-height: 80px;
+            .product-box{
+              display: flex;
+              .product-img{
+                width: 100px;
+                height: 100%;
+                .img-detail{
+                  width: 60px;
+                  height: 60px;
+                }
+              }
+              .product-detail{
+                flex: 1;
+                height: 100%;
+                .product-name{
+                  font-size: 15px;
+                  font-weight: 900;
+                  line-height: 25px;
+                  color: #222;
+                }
+                .product-des{
+                  font-size: 10px;
+                  line-height: 12px;
+                  color: #aaa;
+                }
+                .product-rate{
+                  font-size: 10px;
+                  font-weight: 500;
+                  color: #868686;
+                  line-height: 16px;
+                }
+                .product-price{
+                  font-size: 13px;
+                  font-weight: 700;
+                  color: #868686;
+                  line-height: 16px;
+                }
+
+              }
+              .select-this{
+                width: 80px;
               }
             }
-          .product-detail{
-            flex: 1;
-            height: 100%;
-            .product-name{
-              font-size: 15px;
-              font-weight: 900;
-              line-height: 25px;
-              color: #222;
-            }
-            .product-des{
-              font-size: 10px;
-              line-height: 12px;
-              color: #aaa;
-            }
-            .product-rate{
-              font-size: 10px;
-              font-weight: 500;
-              color: #868686;
-              line-height: 16px;
-            }
-            .product-price{
-              font-size: 13px;
-              font-weight: 700;
-              color: #868686;
-              line-height: 16px;
-            }
-
-          }
-          .select-this{
-            width: 80px;
-          }
           }
         }
+
       }
 
     }
