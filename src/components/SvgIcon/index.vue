@@ -37,6 +37,8 @@ export default {
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
+  /*fill: #111111;*/
+  color: #111;
   fill: currentColor;
   overflow: hidden;
 }

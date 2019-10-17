@@ -51,7 +51,7 @@
                     </div>
                   </div>
                   <div class="select-this">
-                    <cart-control :product="productItem"></cart-control>
+                    <cart-control :product="productItem" @addProduct="addProduct" ref="product"></cart-control>
                   </div>
                 </div>
               </div>
@@ -160,6 +160,15 @@ export default {
     },
     lookDetail (i) {
       console.log(i)
+    },
+    addProduct (target) {
+      this._drop(target)
+    },
+    _drop (target) {
+      // 体验优化,异步执行下落动画
+      this.$nextTick(() => {
+        this.$refs.shopcart.drop(target)
+      })
     }
   }
 }
@@ -177,14 +186,17 @@ export default {
     .shop-head{
       width: 100%;
       height: 100px;
-      background-color: dodgerblue;
     }
     .tab-list{
       width: 100%;
-      height: 30px;
+      height: 40px;
       background-color: #fff;
       color: #888;
+      font-size: 13px;
       display: flex;
+   line-height: 40px;
+      justify-items: center;
+      border-bottom: .5px #eee solid;
       .tab-item{
         flex: 1;
       }
@@ -193,7 +205,7 @@ export default {
       width:100%;
       display: flex;
       position: absolute;
-      top: 130px;
+      top: 140px;
       left: 0;
       right: 0;
       bottom: 50px;

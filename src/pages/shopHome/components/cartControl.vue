@@ -32,9 +32,10 @@ export default {
     this.productItem = this.product
   },
   methods: {
-    addCartCount () {
+    addCartCount (event) {
       console.log('aaa')
       this.productItem.count++
+      this.$emit('addProduct', event.target)
     },
     deleteCartCount (event) {
       console.log('aaa')

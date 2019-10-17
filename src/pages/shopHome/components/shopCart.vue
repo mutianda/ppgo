@@ -3,10 +3,21 @@
     <div class="shop-cart">
       <div class="cart-box">
         <div class="cart-left">
-          <svg-icon icon-class="cart" class-name="card-panel-icon" />
+          <div class="cart-wrapper">
+            <div class="cart-log" :class="{'highlight':totalPrice>0}" >
+              <svg-icon icon-class="cart" class-name="cart-icon" />
+            </div>
+          </div>
+          <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
         </div>
-        <div class="cart-center"></div>
-        <div class="cart-right"></div>
+        <div class="cart-center">
+          另需配送费￥{{deliveryPrice}}元
+        </div>
+        <div class="cart-right">
+          <div class="pay-des" >
+           {{payDesc}}
+          </div>
+        </div>
       </div>
 <!--      <div class="content" @click="toggleList">-->
 <!--        <div class="content-left">-->
@@ -25,15 +36,15 @@
 <!--          </div>-->
 <!--        </div>-->
 <!--      </div>-->
-<!--      <div class="ball-container">-->
-<!--        <div v-for="(ball,index) in balls" :key="index">-->
-<!--          <transition name="drop" @before-enter="beforeDrop" @enter="dropping" @after-enter="afterDrop">-->
-<!--            <div class="ball" v-show="ball.show">-->
-<!--              <div class="inner inner-hook"></div>-->
-<!--            </div>-->
-<!--          </transition>-->
-<!--        </div>-->
-<!--      </div>-->
+      <div class="ball-container">
+        <div v-for="(ball,index) in balls" :key="index">
+          <transition name="drop" @before-enter="beforeDrop" @enter="dropping" @after-enter="afterDrop">
+            <div class="ball" v-show="ball.show">
+              <div class="inner inner-hook"></div>
+            </div>
+          </transition>
+        </div>
+      </div>
 <!--      <transition name="fold">-->
 <!--        <div class="shopcart-list" v-show="listShow">-->
 <!--          <div class="list-header">-->
@@ -84,7 +95,7 @@ export default {
     },
     deliveryPrice: {
       type: Number,
-      default: 0
+      default: 4
     },
     minPrice: {
       type: Number,
@@ -116,7 +127,7 @@ export default {
   },
   computed: {
     totalPrice () {
-      let total = 0
+      let total = 10
       // this.selectFoods.forEach((food) => {
       //   total += food.price * food.count
       // })
@@ -198,7 +209,7 @@ export default {
       }
       window.alert(`支付${this.totalPrice}元`)
     },
-    addFood (target) {
+    addProduct (target) {
       this.drop(target)
     },
     beforeDrop (el) {
@@ -253,22 +264,103 @@ export default {
       width: 100%;
       display: flex;
       height: 48px;
+      line-height: 48px;
       background: #141d27;
-      font-size: 0;
+      font-weight: 700;
       color: rgba(255, 255, 255, 0.4);
       .cart-left{
-        flex: 150px;
-        background-color: #131d26;
+        flex: 0 0 130px;
+        background-color: #131d27;
+        position: relative;
+        .cart-wrapper{
+          position: absolute;
+          top:-10px;
+          left: 0;
+          margin: 0 12px;
+          padding: 6px;
+          width: 56px;
+          height: 56px;
+          box-sizing: border-box;
+          border-radius: 50%;
+          text-align: center;
+          background: #131d27;
+          .cart-log{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border-radius: 50%;
+            text-align: center;
+            background: #2b343c;
+            &.highlight{
+              background: dodgerblue;
+            }
+            .cart-icon{
+              line-height: 46px;
+              margin-top: 10px;
+              width: 25px;
+              height: 25px;
+              text-align: center;
+            }
+          }
+        }
+        .price{
+          position: absolute;
+          top: 0;
+          right: 10px;
+          width: 50px;
+          height: 100%;
+          line-height: 44px;
+          color: #80858a;
+          font-weight: 700;
+          font-size: 18px;
+          border-right: 1px #eee;
+          &.highlight{
+            color: #fff;
+          }
+          /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4)*/
+        }
       }
       .cart-center{
         flex: 1;
+        font-size: 10px;
+        color: #868686;
         background: #141d27;
+        border-left: 1px solid rgba(255, 255, 255, 0.1)
       }
       .cart-right{
-        flex: 0 0 100px;
+        width:  100px;
+        height: 100%;
         background-color: #2b343b;
+        .pay-des{
+          width: 100px;
+          height: 46px;
+          line-height: 46px;
+          text-align: center;
+          color: #868686;
+          font-size: 15px;
+          font-weight: 600;
+          &.can-pay{
+            background: #00b43c;
+            color: #fff;
+          }
+        }
       }
     }
-
+    .ball-container{
+      .ball{
+        position: fixed;
+        left: 32px;
+        bottom: 22px;
+        z-index: 200;
+        transition: all 0.4s cubic-bezier(0.49, -0.29, 0.75, 0.41);
+        .inner{
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: rgb(0, 160, 220);
+          transition: all 0.4s linear;
+        }
+      }
+    }
   }
 </style>
