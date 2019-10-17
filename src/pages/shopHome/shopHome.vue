@@ -1,6 +1,19 @@
 <template>
     <div class="home-page">
-      <div class="shop-head"></div>
+      <div class="shop-head">
+        <shop-header :shop="shop"></shop-header>
+      </div>
+      <div class="tab-list">
+        <div class="tab-item">
+          商品
+        </div>
+        <div class="tab-item">
+          评价
+        </div>
+        <div class="tab-item">
+          商家
+        </div>
+      </div>
       <div class="product-list">
         <div class="menu-left" ref="menuWrapper">
           <div class="menu-content">
@@ -16,9 +29,9 @@
           <div v-for="(item,index) in goods" :key="index" ref="productList" class="menu-product-list product-list-hook">
             <div class="menu-title">{{item.name}}</div>
             <div class="menu-product">
-              <div v-for="(productItem,productIndex) in item.foods" :key="productIndex" class="product-item product-item-hook">
+              <div v-for="(productItem,productIndex) in item.products" :key="productIndex" class="product-item product-item-hook">
                 <div class="product-box">
-                  <div class="product-img">
+                  <div class="product-img" @click="lookDetail(productItem)">
                     <img :src="productItem.image" class="img-detail"/>
                   </div>
                   <div class="product-detail">
@@ -33,11 +46,12 @@
                       <span class="product-sell-num">好评：{{productItem.rating}}%</span>
                     </div>
                     <div class="product-price">
-                      ￥<span class="price-text" style="color: red">{{productItem.price}}</span>
+                      <span class="price-text" style="color: red">￥{{productItem.price}}</span>
+                        <span v-show="productItem.oldPrice" class="old">￥{{ productItem.oldPrice }}</span>
                     </div>
                   </div>
                   <div class="select-this">
-
+                    <cart-control :product="productItem"></cart-control>
                   </div>
                 </div>
               </div>
@@ -46,23 +60,31 @@
           </div>
         </div>
       </div>
-      <div class="page-foot"></div>
+      <div class="page-foot">
+        <shop-cart :product="product" ref="shopcart"></shop-cart>
+      </div>
     </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
-import {getProductList} from '@/api/shop/home'
+import {getProductList, getShopInfo} from '@/api/shop/home'
+import ShopHeader from './components/shopHeader'
+import ShopCart from './components/shopCart'
+import CartControl from './components/cartControl'
 
 export default {
   name: 'shopHome',
+  components: {CartControl, ShopCart, ShopHeader},
   data () {
     return {
       selectedFoods: {},
       goods: [],
       listHeight: [],
       scrollY: 0,
-      selectedFood: {}
+      selectedFood: {},
+      shop: {},
+      product: {}
     }
   },
   computed: {
@@ -81,7 +103,19 @@ export default {
     }
   },
   created () {
-    this.goods = getProductList().data
+    let product = getProductList().data
+    let shop = getShopInfo()
+    this.shop = shop
+    console.log(product)
+    console.log(shop)
+    for (let i in product) {
+      product[i].typeid = 'ptoductType-' + i
+      for (let index in product[i].products) {
+        product[i].products[index].productId = 'productId-' + index
+        product[i].products[index].count = index
+      }
+    }
+    this.goods = JSON.parse(JSON.stringify(product))
   },
   mounted () {
     this._initScroll()
@@ -94,6 +128,7 @@ export default {
       })
 
       this.productScroll = new BScroll(this.$refs.productWrapper, {
+        click: true,
         probeType: 3
       })
       this.productScroll.on('scroll', (pos) => {
@@ -122,6 +157,9 @@ export default {
         }
         this.listHeight.push(height)
       }
+    },
+    lookDetail (i) {
+      console.log(i)
     }
   }
 }
@@ -141,15 +179,25 @@ export default {
       height: 100px;
       background-color: dodgerblue;
     }
+    .tab-list{
+      width: 100%;
+      height: 30px;
+      background-color: #fff;
+      color: #888;
+      display: flex;
+      .tab-item{
+        flex: 1;
+      }
+    }
     .product-list{
       width:100%;
       display: flex;
       position: absolute;
-      top: 100px;
+      top: 130px;
       left: 0;
       right: 0;
       bottom: 50px;
-      margin: 5px 0;
+      margin: 1px 0;
       overflow: hidden;
       background-color: #42b983;
       .menu-left{
@@ -175,6 +223,7 @@ export default {
       }
       .product-right{
         flex: 1;
+        padding: 0px 5px;
         background-color: #fff;
         .menu-product-list{
           &:last-child{
@@ -205,6 +254,7 @@ export default {
               .product-detail{
                 flex: 1;
                 height: 100%;
+                text-align: left;
                 .product-name{
                   font-size: 15px;
                   font-weight: 900;
@@ -227,11 +277,17 @@ export default {
                   font-weight: 700;
                   color: #868686;
                   line-height: 16px;
+                  .old{
+                    text-decoration:line-through;
+                    font-size: 8px;
+                    padding-left: 20px;
+                  }
                 }
 
               }
               .select-this{
                 width: 80px;
+                position: relative;
               }
             }
           }
@@ -241,13 +297,7 @@ export default {
 
     }
   .page-foot{
-    position: absolute;
-    width: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 50px;
-    background-color: dodgerblue;
+    position: relative;
   }
   }
 
