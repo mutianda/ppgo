@@ -1,12 +1,12 @@
 <template>
 <div class="cart-control">
   <transition name="move">
-  <div class="item cart-decrease" v-show="productItem.count>0">
+  <div class="item cart-decrease" v-show="cout>0">
     <div class="innner el-icon-remove-outline" style="color: #009de0"  @click="deleteCartCount()" ></div>
   </div>
   </transition>
   <div class="item cat-count" >
-    <span v-show="productItem.count>0">{{productItem.count}}</span>
+    <span v-show="cout>0">{{cout}}</span>
   </div>
   <div class="item cart-add" style="color: #009de0">
     <div class="el-icon-circle-plus" @click="addCartCount"></div>
@@ -15,11 +15,18 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'cartControl',
   props: {
     product: {
       type: Object
+    },
+    typeId: {
+      type: String
+    },
+    shopId: {
+      type: String
     }
   },
   data () {
@@ -28,18 +35,37 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      shopCart: 'shopCart'
+    }),
+    cout () {
+      if (this.shopCart[this.shopId] && this.shopCart[this.shopId][this.typeId] && this.shopCart[this.shopId][this.typeId][this.productItem.productId]) {
+        return this.shopCart[this.shopId][this.typeId][this.productItem.productId].count
+      }
+      return 0
+    }
+  },
   created () {
-    this.productItem = this.product
+    this.productItem = JSON.parse(JSON.stringify(this.product))
   },
   methods: {
+    ...mapActions([
+      'addProductToCart',
+      'descreaseProductToCart'
+    ]),
     addCartCount (event) {
       console.log('aaa')
-      this.productItem.count++
       this.$emit('addProduct', event.target)
+      console.log({shopId: this.shopId, typeId: this.typeId, product: this.productItem})
+      const cart = {shopId: this.shopId, typeId: this.typeId, product: this.productItem}
+      this.addProductToCart(cart)
+      console.log(this.shopCart)
     },
     deleteCartCount (event) {
+      const cart = {shopId: this.shopId, typeId: this.typeId, product: this.productItem}
+      this.descreaseProductToCart(cart)
       console.log('aaa')
-      this.productItem.count--
     }
   }
 }

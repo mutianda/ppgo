@@ -1915,7 +1915,7 @@ export function getProductList () {
 export function getShopInfo () {
   return {
     'name': '粥品香坊（回龙观）',
-    'shopId': 12,
+    'shopId': 'shop-12',
     'description': '蜂鸟专送',
     'deliveryTime': 38,
     'score': 4.2,

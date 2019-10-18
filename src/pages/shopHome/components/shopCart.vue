@@ -14,7 +14,7 @@
           另需配送费￥{{deliveryPrice}}元
         </div>
         <div class="cart-right">
-          <div class="pay-des" >
+          <div class="pay-des"  :class="{'can-pay':totalPrice>minPrice}">
            {{payDesc}}
           </div>
         </div>
@@ -75,6 +75,7 @@
 
 <script type="text/ecmascript-6">
 // import BScroll from 'better-scroll'
+import { mapGetters } from 'vuex'
 import CartControl from './cartControl'
 
 export default {
@@ -82,7 +83,7 @@ export default {
     CartControl
   },
   props: {
-    selectFoods: {
+    productList: {
       type: Array,
       default () {
         return [
@@ -126,18 +127,22 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'shopCart'
+    ]),
+
     totalPrice () {
-      let total = 10
-      // this.selectFoods.forEach((food) => {
-      //   total += food.price * food.count
-      // })
+      let total = 0
+      this.productList.forEach((product) => {
+        total += product.price * product.count
+      })
       return total
     },
     totalCount () {
       let count = 0
-      // this.selectFoods.forEach((food) => {
-      //   count += food.count
-      // })
+      this.productList.forEach((product) => {
+        count += product.count
+      })
       return count
     },
     payDesc () {
@@ -176,6 +181,10 @@ export default {
     //   }
     //   return show
     // }
+  },
+  mounted () {
+    console.log(this.productList)
+    console.log('list')
   },
   methods: {
     drop (el) {
@@ -333,8 +342,8 @@ export default {
         background-color: #2b343b;
         .pay-des{
           width: 100px;
-          height: 46px;
-          line-height: 46px;
+          height: 100%;
+          line-height: 48px;
           text-align: center;
           color: #868686;
           font-size: 15px;

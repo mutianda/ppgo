@@ -18,8 +18,12 @@
         <div class="menu-left" ref="menuWrapper">
           <div class="menu-content">
           <div v-for="(item, index) in goods" class="menu-item" :class="{'current':currentIndex===index}" :key="index" @click="selectMenu(index,$event)">
-            <div class="menu-item">
-            <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>{{item.name}}
+          <div class="menu-box">
+            <svg-icon v-if="item.type>0&&classMap[item.type]" :icon-class="classMap[item.type]" class-name="menu-icon"></svg-icon>
+            <span class="menu-text">
+              {{item.name}}
+            </span>
+            <div class="badge-num" v-if="item.count>0">{{item.count}}</div>
           </div>
           </div>
           </div>
@@ -51,7 +55,7 @@
                     </div>
                   </div>
                   <div class="select-this">
-                    <cart-control :product="productItem" @addProduct="addProduct" ref="product"></cart-control>
+                    <cart-control :product="productItem" :shop-id="shop.shopId" :type-id="item.typeId" @addProduct="addProduct" ref="product"></cart-control>
                   </div>
                 </div>
               </div>
@@ -61,13 +65,14 @@
         </div>
       </div>
       <div class="page-foot">
-        <shop-cart :product="product" ref="shopcart"></shop-cart>
+        <shop-cart :productList="shopCartList" :deliveryPrice="shop.deliveryPrice" :minPrice="shop.minPrice" ref="shopcart"></shop-cart>
       </div>
     </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
+import {mapActions, mapGetters} from 'vuex'
 import {getProductList, getShopInfo} from '@/api/shop/home'
 import ShopHeader from './components/shopHeader'
 import ShopCart from './components/shopCart'
@@ -84,13 +89,16 @@ export default {
       scrollY: 0,
       selectedFood: {},
       shop: {},
-      product: {}
+      product: {},
+      classMap: ['hui', 'zhe', 'vip', 'decrease'],
+      minPrice: 33
+
     }
   },
   computed: {
-    classMap () {
-      return ['', '']
-    },
+    ...mapGetters([
+      'shopCart'
+    ]),
     currentIndex () {
       for (let i = 0; i < this.listHeight.length; i++) {
         let height1 = this.listHeight[i]
@@ -100,19 +108,41 @@ export default {
         }
       }
       return 0
+    },
+    shopCartList () {
+      let arr = []
+      let shopcount = this.shop
+      for (const item of this.goods) {
+        if (this.shopCart[this.shop.shopId] && this.shopCart[this.shop.shopId][item.typeId]) {
+          let itemcount = 0
+          for (const childitem of item.products) {
+            if (this.shopCart[this.shop.shopId][item.typeId][childitem.productId]) {
+              childitem.count = this.shopCart[this.shop.shopId][item.typeId][childitem.productId].count
+              itemcount += childitem.count
+              arr.push(childitem)
+            }
+          }
+          item.count = itemcount
+          console.log(item.count, 'menuNum')
+        }
+        shopcount.count += item.count
+      }
+      return arr
     }
   },
   created () {
     let product = getProductList().data
     let shop = getShopInfo()
+    shop.count = 0
     this.shop = shop
     console.log(product)
     console.log(shop)
     for (let i in product) {
-      product[i].typeid = 'ptoductType-' + i
+      product[i].typeId = 'ptoductType-' + i
+      product[i].count = 0
       for (let index in product[i].products) {
         product[i].products[index].productId = 'productId-' + index
-        product[i].products[index].count = index
+        product[i].products[index].count = 0
       }
     }
     this.goods = JSON.parse(JSON.stringify(product))
@@ -122,6 +152,9 @@ export default {
     this._calculateHeight()
   },
   methods: {
+    ...mapActions([
+      'addProductToCart'
+    ]),
     _initScroll () {
       this.meunScroll = new BScroll(this.$refs.menuWrapper, {
         click: true
@@ -176,7 +209,6 @@ export default {
 
 <style lang="less" scoped>
   .home-page{
-    background-color: #eee;
     position: relative;
     height: 100%;
     top: 0;
@@ -185,7 +217,8 @@ export default {
     right: 0;
     .shop-head{
       width: 100%;
-      height: 100px;
+      height: 120px;
+      position: relative;
     }
     .tab-list{
       width: 100%;
@@ -194,7 +227,7 @@ export default {
       color: #888;
       font-size: 13px;
       display: flex;
-   line-height: 40px;
+      line-height: 40px;
       justify-items: center;
       border-bottom: .5px #eee solid;
       .tab-item{
@@ -205,31 +238,57 @@ export default {
       width:100%;
       display: flex;
       position: absolute;
-      top: 140px;
+      top: 160px;
       left: 0;
       right: 0;
       bottom: 50px;
       margin: 1px 0;
       overflow: hidden;
-      background-color: #42b983;
       .menu-left{
-        width: 100px;
-        background-color: #eee;
+        width: 90px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        background-color: rgba(245,245,245,.8);
         .menu-item{
-          color: #aaa;
+          color: #353535;
           font-size: 10px;
-          height: 50px;
-          text-align: center;
-          line-height: 50px;
+          margin: 0 auto;
           &.current{
             position: relative;
             z-index: 10;
-            margin-top: -1px;
+            margin-top: -2px;
             background: #fff;
-            font-weight: 700;
+            font-weight: 900;
           }
           &:last-child{
             border:none;
+          }
+          .menu-box{
+            padding: 13px 20px;
+            height: auto;
+            text-align: left;
+            position: relative;
+            .menu-text{
+              text-align: left;
+            }
+            .menu-icon{
+              width: 25px;
+              vertical-align: top;
+            }
+            .badge-num{
+              position: absolute;
+              top:0;
+              right: -10px;
+              width: 18px;
+              height: 18px;
+              text-align: center;
+              border-radius: 50%;
+              background-color: red;
+              color: #fff;
+              line-height: 18px;
+            }
           }
         }
       }
