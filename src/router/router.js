@@ -6,14 +6,22 @@ Vue.use(Router)
 export const constantRouterMap = [
   { path: '/login',
     meta: { title: '登录', noCache: true },
-    component: () => import('@/pages/login'),
-    hidden: true
+    component: () => import('@/pages/login')
   },
   {
-    path: '/shop',
+    path: '/',
     name: 'shop',
-    component: () => import('@/pages/shopHome/shopHome'),
-    hidden: true
+    component: () => import('@/pages/shopHome/shopHome')
+  },
+  {
+    path: '/checkout',
+    name: 'checkout',
+    component: () => import('@/pages/checkOut/checkOut')
+  },
+  {
+    path: '/pay/finished',
+    name: 'payfinished',
+    component: () => import('@/pages/payFinished/payFinished')
   }
 ]
 const router = new Router({

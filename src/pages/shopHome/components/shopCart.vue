@@ -13,7 +13,7 @@
         <div class="cart-center">
           另需配送费￥{{deliveryPrice}}元
         </div>
-        <div class="cart-right">
+        <div class="cart-right" @click="checkOut">
           <div class="pay-des"  :class="{'can-pay':totalPrice>minPrice}">
            {{payDesc}}
           </div>
@@ -183,8 +183,8 @@ export default {
     // }
   },
   mounted () {
-    console.log(this.productList)
-    console.log('list')
+    // console.log(this.productList)
+    // console.log('list')
   },
   methods: {
     drop (el) {
@@ -256,6 +256,9 @@ export default {
         ball.show = false
         el.style.display = 'none'
       }
+    },
+    checkOut () {
+      this.$router.push('/checkout')
     }
   }
 }
