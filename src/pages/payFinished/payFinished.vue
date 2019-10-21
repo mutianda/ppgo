@@ -62,11 +62,12 @@ export default {
     overflow: hidden;
     .timeline{
       width: 100%;
-      margin: 50px 10px;
-      padding-top: 150px;
+      margin: 20px 10px;
+      padding-top: 50px;
     }
     .box-card{
       width: 80%;
+      padding-top: 50px;
       margin: 0 auto;
       height: 100px;
       .pay-result{
