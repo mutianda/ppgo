@@ -5,7 +5,7 @@
         <div class="cart-left">
           <div class="cart-wrapper">
             <div class="cart-log" :class="{'highlight':totalPrice>0}" >
-              <svg-icon icon-class="cart" class-name="cart-icon" />
+              <svg-icon icon-class="cart" class-name="cart-icon" id="shopCart" v-if="showCart"/>
             </div>
           </div>
           <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
@@ -105,6 +105,7 @@ export default {
   },
   data () {
     return {
+      showCart: true,
       balls: [
         {
           show: false
@@ -256,6 +257,12 @@ export default {
         ball.show = false
         el.style.display = 'none'
       }
+      // this.showCart = false
+      var cart = document.getElementById('shopCart')
+      cart.classList.add('shopc')
+      setTimeout(() => {
+        cart.classList.remove('shopc')
+      }, 1000)
     },
     checkOut () {
       this.$router.push('/checkout')
@@ -312,6 +319,26 @@ export default {
               width: 25px;
               height: 25px;
               text-align: center;
+              &.shopc{
+                animation: shopCart .15s;
+              }
+            }
+            @keyframes shopCart
+            {
+              0%   {
+                transform:rotate(0deg) scale(1);
+              }
+              25%  {
+                transform:rotate(-10deg)scale(1.1);
+
+              }
+              50%  {
+                transform:rotate(-20deg)scale(1.15);
+
+              }
+              100% {
+                transform:rotate(0deg) scale(1);
+              }
             }
           }
         }

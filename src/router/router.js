@@ -14,6 +14,11 @@ export const constantRouterMap = [
     component: () => import('@/pages/shopHome/shopHome')
   },
   {
+    path: '/myorder',
+    name: 'myorder',
+    component: () => import('@/pages/myOrder/MyOrder')
+  },
+  {
     path: '/checkout',
     name: 'checkout',
     component: () => import('@/pages/checkOut/checkOut')

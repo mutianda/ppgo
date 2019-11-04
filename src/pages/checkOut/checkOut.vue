@@ -35,14 +35,14 @@
   </div>
   <div class="check">
     <div class="check-now">合计{{allMoney}}元</div>
-    <div class="pay-now" @click="$router.push('/pay/finished')">支付</div>
+    <div class="pay-now" @click="payNow">支付</div>
   </div>
 </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 export default {
   name: 'checkOut',
   data () {
@@ -84,6 +84,9 @@ export default {
     console.log(this.productScroll)
   },
   methods: {
+    ...mapActions([
+      'payFinish'
+    ]),
     goBack () {
       this.$router.go(-1)
     },
@@ -91,6 +94,10 @@ export default {
       this.productScroll = new BScroll(this.$refs.productListWrapper, {
         click: true
       })
+    },
+    payNow () {
+      this.payFinish(true)
+      this.$router.push('./pay/finished')
     }
   }
 }
@@ -226,6 +233,7 @@ export default {
             padding: 5px 0px;
             background-color: #fff;
             border-bottom: 1px solid #eee;
+
             .product-box{
               display: flex;
               height: 60px;

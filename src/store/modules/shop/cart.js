@@ -1,8 +1,9 @@
-
+import { getTime } from '@/utils/commonFunc'
 const cart = {
   state: {
     cart: {
-    }
+    },
+    order: []
   },
   mutations: {
     ADD_CART: (state, {shopId, typeId, product}) => {
@@ -30,6 +31,16 @@ const cart = {
       }
       // state.cart = JSON.parse(JSON.stringify(state.cart))
       state.cart = Object.assign({}, state.cart)
+    },
+    PAY_FINISH: (state, status) => {
+      const order = {
+        orderId: Math.floor(Math.random() * 100) + new Date().getDay().toString() + new Date().getHours().toString() + new Date().getMinutes(),
+        orderContent: JSON.parse(JSON.stringify(state.cart)),
+        orderTime: getTime(new Date()),
+        status
+      }
+      state.order.unshift(order)
+      state.cart = {}
     }
   },
   actions: {
@@ -38,6 +49,9 @@ const cart = {
     },
     descreaseProductToCart ({ commit }, cart) {
       commit('DESCEASE_CART', cart)
+    },
+    payFinish ({ commit }, status) {
+      commit('PAY_FINISH', status)
     }
   }
 }

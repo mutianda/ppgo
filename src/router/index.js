@@ -1,19 +1,23 @@
 import router from './router'
-// import store from '@/store'
-const whiteList = ['/login','/demo']// no redirect whitelist
+// no redirect whitelist
 
+const whiteList = ['/login', '/demo']
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
-  let token ='123'
+  console.log(to)
+  const token = localStorage.getItem('user')
+  console.log(token)
   if (token) {
     // 已登录且要跳转的页面是登录页
     if (to.path === '/login') {
       next({ path: '/' })
+    } else {
+      next()
     }
   } else {
-    /* has no token*/
+    /* has no token */
     if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
       next()
     } else {
@@ -80,7 +84,7 @@ router.beforeEach((to, from, next) => {
 //   })
 // }
 
-router.afterEach(() => {
-  // NProgress.done() // finish progress bar
-  console.log('跳转')
-})
+// router.afterEach(() => {
+//   // NProgress.done() // finish progress bar
+//   console.log('跳转')
+// })

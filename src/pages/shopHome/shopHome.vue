@@ -97,7 +97,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'shopCart'
+      'shopCart',
+      'user'
     ]),
     currentIndex () {
       for (let i = 0; i < this.listHeight.length; i++) {
@@ -208,6 +209,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  /deep/.el-form-item__label{
+    color: #fff !important;
+  }
   .home-page{
     position: relative;
     height: 100%;
