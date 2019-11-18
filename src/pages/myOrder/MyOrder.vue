@@ -30,7 +30,7 @@
 
 <script>
 import BScroll from 'better-scroll'
-import {mapActions, mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
 export default {
   name: 'MyOrder',
   data () {

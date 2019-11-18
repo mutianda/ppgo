@@ -8,13 +8,13 @@ export function getProductList () {
         'type': -1,
         'products': [
           {
-            'name': '皮蛋瘦肉粥',
+            'name': 'type-c数据线',
             'price': 10,
             'oldPrice': '',
-            'description': '咸粥',
+            'description': 'type-c数据线 快充',
             'sellCount': 229,
             'rating': 100,
-            'info': '一碗皮蛋瘦肉粥，总是我到粥店时的不二之选。香浓软滑，饱腹暖心，皮蛋的Q弹与瘦肉的滑嫩伴着粥香溢于满口，让人喝这样的一碗粥也觉得心满意足',
+            'info': 'type-c数据线华为p30p20p10p9快充mate充电器线5A荣耀v10v9小米8se原装nova3 4正品tepy手机6x线tapy加长tpc',
             'ratings': [
               {
                 'username': '3******c',
@@ -38,8 +38,8 @@ export function getProductList () {
                 'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
               }
             ],
-            'icon': 'http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/114/h/114',
-            'image': 'http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/750/h/750'
+            'icon': 'http://img4.imgtn.bdimg.com/it/u=3162316730,1131530246&fm=15&gp=0.jpg',
+            'image': 'http://img4.imgtn.bdimg.com/it/u=3162316730,1131530246&fm=15&gp=0.jpg'
           },
           {
             'name': '扁豆焖面',
@@ -349,7 +349,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '单人精彩套餐',
+        'name': '数据线',
         'type': 2,
         'products': [
           {
@@ -375,7 +375,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '冰爽饮品限时特惠',
+        'name': '充电器',
         'type': 1,
         'products': [
           {
@@ -408,7 +408,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '精选热菜',
+        'name': '手机配件',
         'type': -1,
         'products': [
           {
@@ -495,7 +495,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '爽口凉菜',
+        'name': '电脑配件',
         'type': -1,
         'products': [
           {
@@ -569,7 +569,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '精选套餐',
+        'name': '键盘鼠标',
         'type': 1,
         'products': [
           {
@@ -615,7 +615,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '果拼果汁',
+        'name': '最新手机',
         'type': 1,
         'products': [
           {
@@ -694,7 +694,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '小吃主食',
+        'name': '组装电脑',
         'type': 1,
         'products': [
           {
@@ -870,7 +870,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '特色粥品',
+        'name': '品牌电脑',
         'type': -1,
         'products': [
           {
@@ -1078,7 +1078,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '特色粥品',
+        'name': '儿童手表',
         'type': -1,
         'products': [
           {
@@ -1286,7 +1286,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '特色粥品',
+        'name': '路由器',
         'type': -1,
         'products': [
           {
@@ -1494,215 +1494,7 @@ export function getProductList () {
         ]
       },
       {
-        'name': '特色粥品',
-        'type': -1,
-        'products': [
-          {
-            'name': '皮蛋瘦肉粥',
-            'price': 10,
-            'oldPrice': '',
-            'description': '咸粥',
-            'sellCount': 229,
-            'rating': 100,
-            'ratings': [
-              {
-                'username': '3******c',
-                'rateTime': 1469281964000,
-                'rateType': 0,
-                'text': '很喜欢的粥',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '2******3',
-                'rateTime': 1469271264000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '3******b',
-                'rateTime': 1469261964000,
-                'rateType': 1,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              }
-            ],
-            'icon': 'http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/114/h/114',
-            'image': 'http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/750/h/750'
-          },
-          {
-            'name': '南瓜粥',
-            'price': 9,
-            'oldPrice': '',
-            'description': '甜粥',
-            'sellCount': 91,
-            'rating': 100,
-            'info': '',
-            'ratings': [
-              {
-                'username': '3******c',
-                'rateTime': 1469281964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '2******3',
-                'rateTime': 1469271264000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '3******b',
-                'rateTime': 1469261964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              }
-            ],
-            'icon': 'http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114',
-            'image': 'http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/750/h/750'
-          },
-          {
-            'name': '红豆薏米美肤粥',
-            'price': 12,
-            'oldPrice': '',
-            'description': '甜粥',
-            'sellCount': 86,
-            'rating': 100,
-            'info': '',
-            'ratings': [
-              {
-                'username': '3******c',
-                'rateTime': 1469281964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '2******3',
-                'rateTime': 1469271264000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '3******b',
-                'rateTime': 1469261964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              }
-            ],
-            'icon': 'http://fuss10.elemecdn.com/d/22/260bd78ee6ac6051136c5447fe307jpeg.jpeg?imageView2/1/w/114/h/114',
-            'image': 'http://fuss10.elemecdn.com/d/22/260bd78ee6ac6051136c5447fe307jpeg.jpeg?imageView2/1/w/750/h/750'
-          },
-          {
-            'name': '红枣山药糙米粥',
-            'price': 10,
-            'oldPrice': '',
-            'description': '',
-            'sellCount': 81,
-            'rating': 91,
-            'info': '',
-            'ratings': [
-              {
-                'username': '3******c',
-                'rateTime': 1469281964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '2******3',
-                'rateTime': 1469271264000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '3******b',
-                'rateTime': 1469261964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              }
-            ],
-            'icon': 'http://fuss10.elemecdn.com/9/b5/469d8854f9a3a03797933fd01398bjpeg.jpeg?imageView2/1/w/114/h/114',
-            'image': 'http://fuss10.elemecdn.com/9/b5/469d8854f9a3a03797933fd01398bjpeg.jpeg?imageView2/1/w/750/h/750'
-          },
-          {
-            'name': '鲜蔬菌菇粥',
-            'price': 11,
-            'oldPrice': '',
-            'description': '咸粥',
-            'sellCount': 56,
-            'rating': 100,
-            'info': '',
-            'ratings': [
-              {
-                'username': '3******c',
-                'rateTime': 1469281964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '2******3',
-                'rateTime': 1469271264000,
-                'rateType': 0,
-                'text': ''
-              },
-              {
-                'username': '3******b',
-                'rateTime': 1469261964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              }
-            ],
-            'icon': 'http://fuss10.elemecdn.com/e/a3/5317c68dd618929b6ac05804e429ajpeg.jpeg?imageView2/1/w/114/h/114',
-            'image': 'http://fuss10.elemecdn.com/e/a3/5317c68dd618929b6ac05804e429ajpeg.jpeg?imageView2/1/w/750/h/750'
-          },
-          {
-            'name': '田园蔬菜粥',
-            'price': 10,
-            'oldPrice': '',
-            'description': '咸粥',
-            'sellCount': 33,
-            'rating': 100,
-            'info': '',
-            'ratings': [
-              {
-                'username': '3******c',
-                'rateTime': 1469281964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '2******3',
-                'rateTime': 1469271264000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              },
-              {
-                'username': '3******b',
-                'rateTime': 1469261964000,
-                'rateType': 0,
-                'text': '',
-                'avatar': 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
-              }
-            ],
-            'icon': 'http://fuss10.elemecdn.com/a/94/7371083792c19df00e546b29e344cjpeg.jpeg?imageView2/1/w/114/h/114',
-            'image': 'http://fuss10.elemecdn.com/a/94/7371083792c19df00e546b29e344cjpeg.jpeg?imageView2/1/w/750/h/750'
-          }
-        ]
-      },
-      {
-        'name': '特色粥品',
+        'name': 'u盘内存卡',
         'type': -1,
         'products': [
           {
@@ -1914,7 +1706,7 @@ export function getProductList () {
 }
 export function getShopInfo () {
   return {
-    'name': '粥品香坊（回龙观）',
+    'name': '睢宁县晨露维修',
     'shopId': 'shop-12',
     'description': '蜂鸟专送',
     'deliveryTime': 38,
@@ -1926,7 +1718,8 @@ export function getShopInfo () {
     'deliveryPrice': 4,
     'ratingCount': 24,
     'sellCount': 90,
-    'bulletin': '粥品香坊其烹饪粥料的秘方源于中国千年古法，在融和现代制作工艺，由世界烹饪大师屈浩先生领衔研发。坚守纯天然、0添加的良心品质深得消费者青睐，发展至今成为粥类的引领品牌。是2008年奥运会和2013年园博会指定餐饮服务商。',
+    'bulletin':
+      '手机配件  电脑配件  手机维修  电脑维修  话费充值',
     'supports': [
       {
         'type': 0,

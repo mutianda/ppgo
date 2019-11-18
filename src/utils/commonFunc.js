@@ -11,6 +11,6 @@ export function getTime (date) {
   }
   let hour = date.getHours()
   let min = date.getMinutes()
-  const currentdate = year + seperator1 + month + seperator1 + strDate + '  '+hour+ ":" + min
+  const currentdate = year + seperator1 + month + seperator1 + strDate + '  ' + hour + ':' + min
   return currentdate
 }
